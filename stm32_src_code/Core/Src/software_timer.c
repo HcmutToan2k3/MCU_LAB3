@@ -4,6 +4,8 @@
  *  Created on: Oct 16, 2023
  *      Author: Phuc Toan
  */
+#include "software_timer.h"
+#define TICK 10
 
 int timer1_counter = 0;
 int timer1_flag = 0;
@@ -12,7 +14,7 @@ int timer2_counter = 0;
 int timer2_flag = 0;
 
 void setTimer1(int duration){
-	timer1_counter = duration;
+	timer1_counter = duration/TICK;
 	timer1_flag = 0;
 }
 
