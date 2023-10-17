@@ -101,7 +101,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  if(isButton1Pressed()==1){
+		  //TODO
+		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
