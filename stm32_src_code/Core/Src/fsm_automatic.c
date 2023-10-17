@@ -16,6 +16,7 @@ void fsm_automatic_run(){
 
 		status = AUTO_RED;
 		setTimer1(5000);
+		isButton1Pressed();
 		break;
 	case AUTO_RED:
 		//TODO
@@ -25,6 +26,10 @@ void fsm_automatic_run(){
 		if(timer1_flag == 1){
 			status = AUTO_GREEN;
 			setTimer1(3000);
+		}
+		if(isButton1Pressed()==1){
+			status = MAN_RED;
+			setTimer1(10000);
 		}
 		break;
 	case AUTO_YELLOW:
