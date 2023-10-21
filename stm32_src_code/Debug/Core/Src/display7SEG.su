@@ -1,2 +1,3 @@
 display7SEG.c:13:6:display7SEG	16	static
 display7SEG.c:108:6:clearSignal	8	static
+display7SEG.c:115:6:updateSignal	16	static

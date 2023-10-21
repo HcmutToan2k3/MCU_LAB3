@@ -8,11 +8,30 @@
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
+#include "software_timer.h"
+#include "main.h"
+#include "button.h"
+#include "display7SEG.h"
+
 #define INIT          1
-#define RED_change    2
-#define AMBER_change  3
-#define GREEN_change  4
+#define RED_GREEN     2
+#define RED_AMBER     3
+#define GREEN_RED     4
+#define GREEN_AMBER   5
+
+#define MAN_RED      12
+#define MAN_GREEN    13
+#define MAN_YELLOW   14
 
 extern int status;
+extern int timer_red;
+extern int timer_amber;
+extern int timer_green;
+
+extern int led_buffer[4];
+extern int timerRoad1;
+extern int timerRoad2;
+
+void updateLedbuffer();
 
 #endif /* INC_GLOBAL_H_ */

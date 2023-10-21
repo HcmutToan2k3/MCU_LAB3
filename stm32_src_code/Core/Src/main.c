@@ -18,10 +18,8 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
-#include "software_timer.h"
-#include "display7SEG.h"
-#include "button.h"
+#include "global.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -30,31 +28,9 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-const int MAX_LED = 4;
-int index_led=0;
-int led_buffer[4] = {1,2,3,4};
 /* USER CODE END PTD */
 
-void update7SEG(int index){
-  	  clearSignal();
-  	  display7SEG(led_buffer[index]);
-  	  switch (index){
-  	  case 0:
-  		  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
-  		  break;
-  	  case 1:
-  		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
-  		  break;
-  	  case 2:
-  		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
-  		  break;
-  	  case 3:
-  		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
-  		  break;
-  	  default:
-  		  break;
-  	  }
-  }
+
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 /* USER CODE END PD */
@@ -115,21 +91,18 @@ int main(void)
   MX_TIM2_Init();
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE BEGIN 2 */
-
+  timerRoad1 = timer_red;
+  timerRoad2 = timer_green;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //
-  setTimer1(50);
+
   while (1)
   {
     /* USER CODE END WHILE */
-	  if (timer1_flag==1){
-		  setTimer1(50);
-		  update7SEG(index_led++);
-		  if (index_led >= MAX_LED) index_led = 0;
-	  }
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
