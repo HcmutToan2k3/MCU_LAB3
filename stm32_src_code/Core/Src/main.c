@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "software_timer.h"
+#include "display7SEG.h"
 #include "button.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -29,9 +30,31 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+const int MAX_LED = 4;
+int index_led=0;
+int led_buffer[4] = {1,2,3,4};
 /* USER CODE END PTD */
 
+void update7SEG(int index){
+  	  clearSignal();
+  	  display7SEG(led_buffer[index]);
+  	  switch (index){
+  	  case 0:
+  		  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+  		  break;
+  	  case 1:
+  		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+  		  break;
+  	  case 2:
+  		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+  		  break;
+  	  case 3:
+  		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+  		  break;
+  	  default:
+  		  break;
+  	  }
+  }
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 /* USER CODE END PD */
@@ -98,12 +121,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //
+  setTimer1(50);
   while (1)
   {
     /* USER CODE END WHILE */
-	  if(isButton1Pressed()==1){
-		  //TODO
-		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+	  if (timer1_flag==1){
+		  setTimer1(50);
+		  update7SEG(index_led++);
+		  if (index_led >= MAX_LED) index_led = 0;
 	  }
     /* USER CODE BEGIN 3 */
   }
@@ -202,9 +227,16 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, RED1_Pin|AMBER1_Pin|GREEN1_Pin|RED2_Pin
+                          |AMBER2_Pin|GREEN2_Pin|EN0_Pin|EN1_Pin
+                          |EN2_Pin|EN3_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin
+                          |SEG4_Pin|SEG5_Pin|SEG6_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : Button1_Pin */
   GPIO_InitStruct.Pin = Button1_Pin;
@@ -212,12 +244,25 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(Button1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LED_RED_Pin */
-  GPIO_InitStruct.Pin = LED_RED_Pin;
+  /*Configure GPIO pins : RED1_Pin AMBER1_Pin GREEN1_Pin RED2_Pin
+                           AMBER2_Pin GREEN2_Pin EN0_Pin EN1_Pin
+                           EN2_Pin EN3_Pin */
+  GPIO_InitStruct.Pin = RED1_Pin|AMBER1_Pin|GREEN1_Pin|RED2_Pin
+                          |AMBER2_Pin|GREEN2_Pin|EN0_Pin|EN1_Pin
+                          |EN2_Pin|EN3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_RED_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SEG0_Pin SEG1_Pin SEG2_Pin SEG3_Pin
+                           SEG4_Pin SEG5_Pin SEG6_Pin */
+  GPIO_InitStruct.Pin = SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin
+                          |SEG4_Pin|SEG5_Pin|SEG6_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
