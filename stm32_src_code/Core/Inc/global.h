@@ -13,6 +13,6 @@
 #define AMBER_change  3
 #define GREEN_change  4
 
-
+extern int status;
 
 #endif /* INC_GLOBAL_H_ */
