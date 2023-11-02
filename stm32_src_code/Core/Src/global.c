@@ -22,5 +22,4 @@ void updateLedbuffer(){
 	led_buffer[1] = timerRoad1%10;
 	led_buffer[2] = timerRoad2/10;
 	led_buffer[3] = timerRoad2%10;
-
 }
