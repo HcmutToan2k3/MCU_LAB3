@@ -15,9 +15,9 @@
 
 #define INIT          1
 #define RED_GREEN     2
-#define RED_AMBER     3
+#define RED_YELLOW     3
 #define GREEN_RED     4
-#define GREEN_AMBER   5
+#define GREEN_YELLOW   5
 
 #define MAN_RED      12
 #define MAN_GREEN    13
@@ -25,7 +25,7 @@
 
 extern int status;
 extern int timer_red;
-extern int timer_amber;
+extern int timer_yellow;
 extern int timer_green;
 
 extern int led_buffer[4];
