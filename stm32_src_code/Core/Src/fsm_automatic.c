@@ -15,8 +15,8 @@ void fsm_automatic_run(){
 		off_All();
 
 		status = RED_GREEN;
-		setTimer1(timer_green*1);
-		setTimer2(1);
+		setTimer1(timer_green*100);
+		setTimer2(100);
 		break;
 	case RED_GREEN:
 		//TODO
