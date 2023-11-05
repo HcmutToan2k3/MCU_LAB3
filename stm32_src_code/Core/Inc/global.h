@@ -12,12 +12,13 @@
 #include "main.h"
 #include "button.h"
 #include "display7SEG.h"
+#include "hardware.h"
 
 #define INIT          1
 #define RED_GREEN     2
-#define RED_YELLOW     3
+#define RED_YELLOW    3
 #define GREEN_RED     4
-#define GREEN_YELLOW   5
+#define YELLOW_RED    5
 
 #define MAN_RED      12
 #define MAN_GREEN    13

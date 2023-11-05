@@ -1,0 +1,7 @@
+hardware.c:9:6:onRed1	8	static
+hardware.c:14:6:onYellow1	8	static
+hardware.c:19:6:onGreen1	8	static
+hardware.c:26:6:onRed2	8	static
+hardware.c:31:6:onYellow2	8	static
+hardware.c:36:6:onGreen2	8	static
+hardware.c:42:6:off_All	8	static

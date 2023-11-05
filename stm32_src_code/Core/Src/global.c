@@ -11,7 +11,7 @@ int led_buffer[4] = {0,0,0,0};
 
 
 int timer_red = 5;
-int timer_amber = 2;
+int timer_yellow = 2;
 int timer_green = 3;
 
 int timerRoad1 = 0;

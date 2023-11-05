@@ -10,9 +10,15 @@
 
 #include "global.h"
 
-void display7SEG(int num);
-void clearSignal();
-void updateSignal(int index);
+void displaySEG(int seg, int num);
+
+
+
+//void display7SEG(int num);
+//void clearSignal();
+//void updateSignal(int index);
+
+void updataSignal();
 
 
 #endif /* INC_DISPLAY7SEG_H_ */
