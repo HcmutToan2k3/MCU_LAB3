@@ -4,35 +4,42 @@
  *  Created on: Oct 21, 2023
  *      Author: Phuc Toan
  */
-
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
-#include "software_timer.h"
 #include "main.h"
-#include "button.h"
+#include "software_timer.h"
 #include "display7SEG.h"
+#include "button.h"
 #include "hardware.h"
 
-#define INIT          0
-#define RED_GREEN     1
-#define RED_YELLOW    2
-#define GREEN_RED     3
-#define YELLOW_RED    4
+//fsm
+#define INIT 0
+#define RED_GREEN 1
+#define RED_YELLOW 2
+#define GREEN_RED 3
+#define YELLOW_RED 4
 
-#define MAN_RED      12
-#define MAN_GREEN    13
-#define MAN_YELLOW   14
+#define RED_MAN 12
+#define GREEN_MAN 13
+#define YELLOW_MAN 14
 
-extern int status;
-extern int timer_red;
-extern int timer_yellow;
-extern int timer_green;
+extern int led_status;
+extern int r_val;
+extern int g_val;
+extern int y_val;
 
+extern int r_inc;
+extern int g_inc;
+extern int y_inc;
+
+extern int toogleFlag;
+//7seg
 extern int led_buffer[4];
+extern int index_led;
 extern int timerRoad1;
 extern int timerRoad2;
 
-void updateLedbuffer();
+void updateLedBuffer();
 
 #endif /* INC_GLOBAL_H_ */

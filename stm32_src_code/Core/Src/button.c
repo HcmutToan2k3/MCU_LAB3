@@ -6,49 +6,51 @@
  */
 #include "button.h"
 
-int button1_flag = 0;
+uint16_t mode[3]={SET_MODE_Pin,INC_Pin,SET_VAL_Pin};
 
-int KeyReg0 = NORMAL_STATE;
-int KeyReg1 = NORMAL_STATE;
-int KeyReg2 = NORMAL_STATE;
+int KeyReg0[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg1[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg2[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg3[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
 
-int KeyReg3 = NORMAL_STATE;
-int TimerForKeyPress = 200;
+int TimeOutForKeyPress[NUM_BUTTON] =  {200,200,200};
+int button_flag[NUM_BUTTON] = {0,0,0};
 
-int isButton1Pressed(){
-	if(button1_flag == 1){
-		button1_flag = 0;
+int isButtonPressed(int num){
+	if(button_flag[num] == 1){
+		button_flag[num] = 0;
 		return 1;
 	}
 	return 0;
 }
 
-void subKeyProcess(){
+void subKeyProcess(int num){
 	//TODO
-	button1_flag = 1;
+	button_flag[num]=1;
 }
 
 void getKeyInput(){
-	KeyReg0 = KeyReg1;
-	KeyReg1 = KeyReg2;
-	KeyReg2 = HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin);
-	if((KeyReg0 == KeyReg1) && (KeyReg1 == KeyReg2)){
-		if(KeyReg3 != KeyReg2){
-			KeyReg3 = KeyReg2;
-			if(KeyReg2 == PRESSED_STATE){
-				//TODO
-				subKeyProcess();
+	for (int i=0; i<NUM_BUTTON; i++){
+		KeyReg2[i] = KeyReg1[i];
+		KeyReg1[i] = KeyReg0[i];
+		//Add your button here
+		KeyReg0[i] = HAL_GPIO_ReadPin(GPIOB, mode[i]);
 
-				TimerForKeyPress = 200;
+		if ((KeyReg1[i] == KeyReg0[i]) && (KeyReg1[i] == KeyReg2[i])){ //avoid noise
+			if (KeyReg2[i] != KeyReg3[i]){ //change state
+				KeyReg3[i] = KeyReg2[i];
+				if (KeyReg3[i] == PRESSED_STATE){
+					TimeOutForKeyPress[i] = 200;
+					subKeyProcess(i);
+				}
 			}
-		}else{
-			TimerForKeyPress--;
-			if(TimerForKeyPress == 0){
-				//TODO
-				KeyReg3 = NORMAL_STATE;
 
+			else{ //press without release
+				TimeOutForKeyPress[i]--;
+				if (TimeOutForKeyPress[i] == 0){
+					KeyReg3[i] = NORMAL_STATE;
+				}
 
-				TimerForKeyPress = 200;
 			}
 		}
 	}
