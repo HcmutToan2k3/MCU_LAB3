@@ -20,7 +20,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "fsm_automatic.h"
-#include "software_timer.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -102,14 +101,14 @@ int main(void)
   status = INIT;
   while (1)
   {
-	  if(timer3_flag == 1){
-		  setTimer3(10);
-		  updateLedbuffer();
-	  }
-	  if (timer4_flag == 1){
-		  setTimer4(25);
-		  updateSignal();
-	  }
+//	  if(timer3_flag == 1){
+//		  setTimer3(10);
+//		  updateLedbuffer();
+//	  }
+//	  if (timer4_flag == 1){
+//		  setTimer4(25);
+//		  updateSignal();
+//	  }
     /* USER CODE END WHILE */
 	  fsm_automatic_run();
     /* USER CODE BEGIN 3 */
