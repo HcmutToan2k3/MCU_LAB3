@@ -1,2 +1,2 @@
 display7SEG.c:11:6:displaySEG	16	static
-display7SEG.c:383:6:updataSignal	16	static
+display7SEG.c:261:6:updateSignal	16	static

@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "fsm_automatic.h"
+#include "software_timer.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -81,7 +82,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -90,14 +91,25 @@ int main(void)
   /* USER CODE BEGIN 2 */
   timerRoad1 = timer_red;
   timerRoad2 = timer_green;
+
+  setTimer3(1); // used for update LED buffer
+  setTimer4(1); // used for update LED signal
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //
-
+  status = INIT;
   while (1)
   {
+	  if(timer3_flag == 1){
+		  setTimer3(10);
+		  updateLedbuffer();
+	  }
+	  if (timer4_flag == 1){
+		  setTimer4(25);
+		  updateSignal();
+	  }
     /* USER CODE END WHILE */
 	  fsm_automatic_run();
     /* USER CODE BEGIN 3 */

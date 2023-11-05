@@ -21,7 +21,7 @@ void fsm_automatic_run(){
 	case RED_GREEN:
 		//TODO
 		onRed1();
-		onGreen2();
+		onRed2();
 
 		// decrease time for two road
 		if(timer2_flag == 1){
@@ -79,6 +79,7 @@ void fsm_automatic_run(){
 			setTimer2(100);
 			status = YELLOW_RED;
 		}
+		break;
 	case YELLOW_RED:
 		//TODO
 		onYellow1();
@@ -99,6 +100,8 @@ void fsm_automatic_run(){
 			setTimer2(100);
 			status = RED_GREEN;
 		}
-
+		break;
+	default:
+		break;
 	}
 }

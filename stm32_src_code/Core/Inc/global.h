@@ -14,11 +14,11 @@
 #include "display7SEG.h"
 #include "hardware.h"
 
-#define INIT          1
-#define RED_GREEN     2
-#define RED_YELLOW    3
-#define GREEN_RED     4
-#define YELLOW_RED    5
+#define INIT          0
+#define RED_GREEN     1
+#define RED_YELLOW    2
+#define GREEN_RED     3
+#define YELLOW_RED    4
 
 #define MAN_RED      12
 #define MAN_GREEN    13

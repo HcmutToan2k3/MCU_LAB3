@@ -18,7 +18,7 @@ void displaySEG(int seg, int num);
 //void clearSignal();
 //void updateSignal(int index);
 
-void updataSignal();
+void updateSignal();
 
 
 #endif /* INC_DISPLAY7SEG_H_ */
