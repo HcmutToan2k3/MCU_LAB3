@@ -2,17 +2,17 @@
  * global.h
  *
  *  Created on: Oct 15, 2023
- *      Author: dinhq
+ *      Author: Phuc Toan
  */
 
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
+#include "hardware.h"
 #include "main.h"
 #include "software_timer.h"
 #include "display7SEG.h"
 #include "button.h"
-#include "physical.h"
 
 //fsm
 #define INIT 0
@@ -25,14 +25,14 @@
 #define GREEN_MAN 13
 #define YELLOW_MAN 14
 
-extern int led_status;
-extern int r_val;
-extern int g_val;
-extern int y_val;
+extern int status;
+extern int red_val;
+extern int green_val;
+extern int yellow_val;
 
-extern int r_inc;
-extern int g_inc;
-extern int y_inc;
+extern int red_inc;
+extern int green_inc;
+extern int yellow_inc;
 
 extern int toogleFlag;
 //7seg

@@ -2,17 +2,12 @@
  * display7SEG.c
  *
  *  Created on: Sep 22, 2023
- *      Author: dinhq
+ *      Author: Phuc Toan
  */
 
 #include "display7SEG.h"
 
-void clearSignal(){
-	HAL_GPIO_WritePin(EN0_GPIO_Port,EN0_Pin,SET);
-	HAL_GPIO_WritePin(EN1_GPIO_Port,EN1_Pin,SET);
-	HAL_GPIO_WritePin(EN2_GPIO_Port,EN2_Pin,SET);
-	HAL_GPIO_WritePin(EN3_GPIO_Port,EN3_Pin,SET);
-}
+
 
 void display7SEG(int num){
 	if (num==0){
@@ -106,6 +101,13 @@ void display7SEG(int num){
 		HAL_GPIO_WritePin(SEG5_GPIO_Port,SEG5_Pin,RESET);
 		HAL_GPIO_WritePin(SEG6_GPIO_Port,SEG6_Pin,RESET);
 	}
+}
+
+void clearSignal(){
+	HAL_GPIO_WritePin(EN0_GPIO_Port,EN0_Pin,SET);
+	HAL_GPIO_WritePin(EN1_GPIO_Port,EN1_Pin,SET);
+	HAL_GPIO_WritePin(EN2_GPIO_Port,EN2_Pin,SET);
+	HAL_GPIO_WritePin(EN3_GPIO_Port,EN3_Pin,SET);
 }
 
 void displaySignal(int index){

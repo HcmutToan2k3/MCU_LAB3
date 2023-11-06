@@ -2,10 +2,10 @@
  * physical.c
  *
  *  Created on: Oct 23, 2023
- *      Author: dinhq
+ *      Author: Phuc Toan
  */
 
-#include "physical.h"
+#include "hardware.h"
 
 void onRED1(){
 	HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);

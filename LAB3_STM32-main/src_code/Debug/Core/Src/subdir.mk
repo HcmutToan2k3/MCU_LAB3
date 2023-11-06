@@ -10,6 +10,7 @@ C_SRCS += \
 ../Core/Src/fsm_manual.c \
 ../Core/Src/fsm_traffic_light.c \
 ../Core/Src/global.c \
+../Core/Src/hardware.c \
 ../Core/Src/main.c \
 ../Core/Src/software_timer.c \
 ../Core/Src/stm32f1xx_hal_msp.c \
@@ -24,6 +25,7 @@ OBJS += \
 ./Core/Src/fsm_manual.o \
 ./Core/Src/fsm_traffic_light.o \
 ./Core/Src/global.o \
+./Core/Src/hardware.o \
 ./Core/Src/main.o \
 ./Core/Src/software_timer.o \
 ./Core/Src/stm32f1xx_hal_msp.o \
@@ -38,6 +40,7 @@ C_DEPS += \
 ./Core/Src/fsm_manual.d \
 ./Core/Src/fsm_traffic_light.d \
 ./Core/Src/global.d \
+./Core/Src/hardware.d \
 ./Core/Src/main.d \
 ./Core/Src/software_timer.d \
 ./Core/Src/stm32f1xx_hal_msp.d \

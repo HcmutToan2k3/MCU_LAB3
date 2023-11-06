@@ -2,16 +2,16 @@
  * fsm_manual.c
  *
  *  Created on: Oct 15, 2023
- *      Author: dinhq
+ *      Author: Phuc Toan
  */
 
 #include "fsm_manual.h"
 
 void fsm_manual_run(){
-	switch(led_status){
+	switch(status){
 	case RED_MAN:
 		if (timer5_flag == 1){
-			setTimer5(25);
+			setTimer5(50);
 			if (toogleFlag == 0){
 				toogleFlag = 1;
 				onRED1();
@@ -19,28 +19,29 @@ void fsm_manual_run(){
 			}
 			else {
 				offALL();
+				toogleFlag = 0;
 			}
 		}
 		if (isButtonPressed(1) == 1){
-			r_inc++;
+			red_inc++;
 			timerRoad1++;
-			if (r_inc >= 100) r_inc=2;
+			if (red_inc >= 100) red_inc=2;
 		}
 		if (isButtonPressed(0) == 1){
 			setTimer5(1);
-			led_status = YELLOW_MAN;
+			status = YELLOW_MAN;
 
-			timerRoad1 = y_val;
+			timerRoad1 = yellow_val;
 			timerRoad2 = 3;
 		}
 		if (isButtonPressed(2) == 1){
-			r_val=r_inc;
+			red_val=red_inc;
 		}
 		break;
 
 	case YELLOW_MAN:
 		if (timer5_flag == 1){
-			setTimer5(25);
+			setTimer5(50);
 			if (toogleFlag == 0){
 				toogleFlag = 1;
 				onYELLOW1();
@@ -48,28 +49,29 @@ void fsm_manual_run(){
 			}
 			else {
 				offALL();
+				toogleFlag = 0;
 			}
 		}
 		if (isButtonPressed(1) == 1){
-			y_inc++;
+			yellow_inc++;
 			timerRoad1++;
-			if (y_inc >= r_val) y_inc=1;
+			if (yellow_inc >= red_val) yellow_inc=1;
 		}
 		if (isButtonPressed(0) == 1){
 			setTimer5(1);
-			led_status = GREEN_MAN;
+			status = GREEN_MAN;
 
-			timerRoad1 = g_val;
+			timerRoad1 = green_val;
 			timerRoad2 = 4;
 		}
 		if (isButtonPressed(2) == 1){
-			y_val=y_inc;
+			yellow_val=yellow_inc;
 		}
 		break;
 
 	case GREEN_MAN:
 		if (timer5_flag == 1){
-			setTimer5(25);
+			setTimer5(50);
 			if (toogleFlag == 0){
 				toogleFlag = 1;
 				onGREEN1();
@@ -77,20 +79,21 @@ void fsm_manual_run(){
 			}
 			else {
 				offALL();
+				toogleFlag = 0;
 			}
 		}
 		if (isButtonPressed(1) == 1){
-			g_inc++;
+			green_inc++;
 			timerRoad1++;
-			if (g_inc >= r_val) g_inc=1;
+			if (green_inc >= red_val) green_inc=1;
 		}
 		if (isButtonPressed(0) == 1){
-			led_status = RED_GREEN;
-			g_val = r_val-y_val;
-			timerRoad1 = r_val;
-			timerRoad2 = g_val;
+			status = RED_GREEN;
+			green_val = red_val-yellow_val;
+			timerRoad1 = red_val;
+			timerRoad2 = green_val;
 			updateLedBuffer();
-			setTimer1(g_val*100);
+			setTimer1(green_val*100);
 			setTimer2(100);
 
 			//to display new value of 7SEG
@@ -101,8 +104,8 @@ void fsm_manual_run(){
 
 		}
 		if (isButtonPressed(2) == 1){
-			g_val=g_inc;
-			y_val=r_val-g_val;
+			green_val=green_inc;
+			yellow_val=red_val-green_val;
 		}
 		break;
 
@@ -110,6 +113,6 @@ void fsm_manual_run(){
 		break;
 	}
 	if (isButtonPressed(2) == 1){
-		timerRoad1 = r_val;
+		timerRoad1 = red_val;
 	}
 }

@@ -2,11 +2,11 @@
  * physical.h
  *
  *  Created on: Oct 23, 2023
- *      Author: dinhq
+ *      Author: Phuc Toan
  */
 
-#ifndef INC_PHYSICAL_H_
-#define INC_PHYSICAL_H_
+#ifndef INC_HARDWARE_H_
+#define INC_HARDWARE_H_
 
 #include "main.h"
 
@@ -18,4 +18,4 @@ void onRED2();
 void onYELLOW2();
 void onGREEN2();
 
-#endif /* INC_PHYSICAL_H_ */
+#endif /* INC_HARDWARE_H_ */

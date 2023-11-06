@@ -2,7 +2,7 @@
  * display7SEG.h
  *
  *  Created on: Sep 22, 2023
- *      Author: dinhq
+ *      Author: Phuc Toan
  */
 
 #ifndef INC_DISPLAY7SEG_H_

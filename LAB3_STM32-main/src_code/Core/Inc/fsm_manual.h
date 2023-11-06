@@ -2,7 +2,7 @@
  * fsm_manual.h
  *
  *  Created on: Oct 15, 2023
- *      Author: dinhq
+ *      Author: Phuc Toan
  */
 
 #ifndef INC_FSM_MANUAL_H_
